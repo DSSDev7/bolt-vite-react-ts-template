@@ -6,3 +6,19 @@ Use icons from lucide-react for logos.
 
 Use stock photos from unsplash where appropriate, only valid URLs you know exist. Do not download the images, only link to them in image tags.
 
+CRITICAL - Route Tracking:
+Whenever you create, modify, or delete routes/pages in this React application, you MUST maintain a routes.json file in the project root with the following format:
+
+{
+  "routes": [
+    {"path": "/", "name": "Home", "component": "src/App.tsx"},
+    {"path": "/about", "name": "About", "component": "src/pages/About.tsx"}
+  ]
+}
+
+- Include ALL routes defined in your React Router configuration
+- Use exact route paths as they appear in your code
+- Use user-friendly display names (e.g., "Home" not "HomePage" or "home-page")
+- Update this file EVERY time you add, remove, or rename a route
+- This enables the preview UI to show a dropdown of all available pages
+

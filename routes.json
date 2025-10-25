@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "name": "Home",
+      "component": "src/App.tsx"
+    }
+  ]
+}
