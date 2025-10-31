@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="checkbox"] {
+  accent-color: #111827;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #111827 !important;
+  border-color: #111827 !important;
+}

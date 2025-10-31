@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type="checkbox"]:checked {
+    background-color: #111827 !important;
+    border-color: #111827 !important;
+  }
+
+  input[type="checkbox"]:focus {
+    --tw-ring-color: #111827 !important;
+  }
+}

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    background-color: #111827 !important;
+    border-color: #111827 !important;
+  }
+
+  input[type="checkbox"]:focus,
+  input[type="radio"]:focus {
+    --tw-ring-color: #111827 !important;
+    border-color: #111827 !important;
+  }
+
+  input[type="checkbox"]:checked:focus,
+  input[type="radio"]:checked:focus {
+    background-color: #111827 !important;
+    border-color: #111827 !important;
+    --tw-ring-color: #111827 !important;
+  }
+
+  input[type="radio"]:checked::before {
+    background-color: white !important;
+  }
+}
