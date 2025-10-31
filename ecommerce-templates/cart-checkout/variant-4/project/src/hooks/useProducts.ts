@@ -42,7 +42,7 @@ export const useProducts = () => {
           .map(product => {
             const firstVariant = product.variants![0]
             const price = firstVariant.calculated_price?.calculated_amount
-              ? firstVariant.calculated_price.calculated_amount / 100
+              ? firstVariant.calculated_price.calculated_amount
               : 0
 
             return {

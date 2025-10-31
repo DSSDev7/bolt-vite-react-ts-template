@@ -4,7 +4,7 @@ export function CartSummary() {
   const { cart } = useCart();
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const cartItems = cart?.items || [];

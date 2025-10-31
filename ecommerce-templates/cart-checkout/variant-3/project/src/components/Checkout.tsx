@@ -50,7 +50,7 @@ export default function Checkout({ onBack }: CheckoutProps) {
   const [orderId, setOrderId] = useState<string | null>(null);
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const cartItems = cart?.items || [];
@@ -93,7 +93,7 @@ export default function Checkout({ onBack }: CheckoutProps) {
         },
       });
 
-      // Initialize payment session for manual payment provider
+      // Initialize payment session (creates payment collection automatically)
       await sdk.store.payment.initiatePaymentSession(cart, {
         provider_id: 'pp_system_default',
       });

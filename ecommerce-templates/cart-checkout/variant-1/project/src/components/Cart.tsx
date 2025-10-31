@@ -1,6 +1,6 @@
 import { useCart } from '../contexts/CartContext';
-import { CheckoutHeader } from '../components/CheckoutHeader';
-import { CheckoutNavigation } from '../components/CheckoutNavigation';
+import { CheckoutHeader } from './CheckoutHeader';
+import { CheckoutNavigation } from './CheckoutNavigation';
 
 /**
  * Cart Page
@@ -32,7 +32,7 @@ export function Cart({ onNext }: CartProps) {
   };
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const cartItems = cart?.items || [];

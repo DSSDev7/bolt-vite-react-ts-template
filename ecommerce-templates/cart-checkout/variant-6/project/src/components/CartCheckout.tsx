@@ -46,7 +46,7 @@ const CartCheckout: React.FC = () => {
   });
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const cartItems = cart?.items || [];
@@ -123,8 +123,8 @@ const CartCheckout: React.FC = () => {
 
     setIsProcessing(true);
     try {
-      // Initialize payment session for manual payment provider
-      await sdk.store.payment.initiatePaymentSession(cart, {
+      // Initialize payment session (creates payment collection automatically)
+      await sdk.store.payment.initiatePaymentSession(cart.id, {
         provider_id: 'pp_system_default',
       });
 

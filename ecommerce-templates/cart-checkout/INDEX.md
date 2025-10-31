@@ -234,4 +234,3 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 4. Start development with `npm run dev`
 5. Test checkout flow
 6. Customize as needed
-

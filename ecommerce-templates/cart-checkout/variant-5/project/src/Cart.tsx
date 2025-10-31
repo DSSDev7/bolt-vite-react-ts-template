@@ -19,7 +19,7 @@ const Cart: React.FC<CartProps> = ({ onContinueToCheckout }) => {
   const { cart, loading, updateQuantity, removeItem } = useCart();
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const handleUpdateQuantity = async (itemId: string, newQuantity: number) => {

@@ -81,7 +81,7 @@ const CartCheckout: React.FC = () => {
   };
 
   const formatPrice = (amount: number = 0) => {
-    return (amount / 100).toFixed(2);
+    return (amount).toFixed(2);
   };
 
   const handlePlaceOrder = async () => {
@@ -103,7 +103,7 @@ const CartCheckout: React.FC = () => {
         },
       });
 
-      // Initialize payment session for manual payment provider
+      // Initialize payment session (creates payment collection automatically)
       await sdk.store.payment.initiatePaymentSession(cart, {
         provider_id: 'pp_system_default',
       });

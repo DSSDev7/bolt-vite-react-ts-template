@@ -14,7 +14,7 @@ export function CheckoutNavigation({ onBack, onNext, backText, nextText }: Check
             onClick={onBack}
             className="text-[#111827] hover:underline flex items-center justify-center sm:justify-start gap-1 text-xs sm:text-sm order-2 sm:order-1"
           >
-            <span>&lt;</span>
+            <span>{'<'}</span>
             <span>{backText}</span>
           </button>
         )}
