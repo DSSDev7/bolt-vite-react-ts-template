@@ -42,8 +42,18 @@ const CartCheckout: React.FC = () => {
     city: '',
     state: '',
     zipCode: '',
-    country: 'United States'
+    country: ''
   });
+
+  // Set default country from cart's region
+  React.useEffect(() => {
+    if (cart?.region?.countries && cart.region.countries.length > 0 && !shippingInfo.country) {
+      setShippingInfo(prev => ({
+        ...prev,
+        country: cart.region!.countries![0].iso_2
+      }));
+    }
+  }, [cart?.region, shippingInfo.country]);
 
   const formatPrice = (amount: number = 0) => {
     return (amount).toFixed(2);
@@ -104,7 +114,7 @@ const CartCheckout: React.FC = () => {
           city: shippingInfo.city,
           province: shippingInfo.state,
           postal_code: shippingInfo.zipCode,
-          country_code: shippingInfo.country === 'United States' ? 'us' : 'us',
+          country_code: shippingInfo.country,
           phone: shippingInfo.phone,
         },
       });
@@ -124,7 +134,7 @@ const CartCheckout: React.FC = () => {
     setIsProcessing(true);
     try {
       // Initialize payment session (creates payment collection automatically)
-      await sdk.store.payment.initiatePaymentSession(cart.id, {
+      await sdk.store.payment.initiatePaymentSession(cart, {
         provider_id: 'pp_system_default',
       });
 
@@ -552,10 +562,12 @@ const CartCheckout: React.FC = () => {
               className="w-full px-4 py-3 border border-[#e5e7eb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#111827] text-[#111827] bg-white"
               required
             >
-              <option value="United States">United States</option>
-              <option value="Canada">Canada</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Australia">Australia</option>
+              <option value="">Select Country</option>
+              {cart?.region?.countries?.map((country) => (
+                <option key={country.iso_2} value={country.iso_2}>
+                  {country.display_name || country.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>

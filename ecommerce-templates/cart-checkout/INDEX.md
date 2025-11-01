@@ -94,28 +94,6 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 
 ---
 
-## Variant 5: Custom Hook Architecture
-
-**Path:** `variant-5/project/`
-
-### Characteristics
-- **Architecture:** Modular with specific state management approach
-- **Complexity:** Medium
-- **Files:** `Cart.tsx`, `Checkout.tsx`
-- **Best For:** Projects with specific state management needs
-
-### Components
-- `Cart.tsx` - Cart with custom hook integration
-- `Checkout.tsx` - Checkout with custom hook architecture
-
-### Use Cases
-✅ Projects with existing state management
-✅ Custom business logic requirements
-✅ Integration with specific frameworks
-✅ Advanced React developers
-
----
-
 ## Variant 6: Three-Step Progress Flow
 
 **Path:** `variant-6/project/`

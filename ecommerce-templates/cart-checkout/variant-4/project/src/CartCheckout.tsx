@@ -41,12 +41,22 @@ const CartCheckout: React.FC = () => {
     city: '',
     state: '',
     zipCode: '',
-    country: 'United States',
+    country: '',
     phone: '',
   });
 
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
+
+  // Set default country from cart's region
+  React.useEffect(() => {
+    if (cart?.region?.countries && cart.region.countries.length > 0 && !formData.country) {
+      setFormData(prev => ({
+        ...prev,
+        country: cart.region!.countries![0].iso_2 || ''
+      }));
+    }
+  }, [cart?.region, formData.country]);
 
   const handleUpdateQuantity = async (itemId: string, currentQuantity: number, change: number) => {
     const newQuantity = Math.max(1, currentQuantity + change);
@@ -98,7 +108,7 @@ const CartCheckout: React.FC = () => {
       case 'zipCode':
         if (!value) return 'ZIP/Postal code is required';
         if (/\s/.test(value)) return 'Please exclude all spaces';
-        if (formData.country === 'United States' && !/^\d{5}(-\d{4})?$/.test(value)) {
+        if (formData.country === 'us' && !/^\d{5}(-\d{4})?$/.test(value)) {
           return 'Please enter a valid US ZIP code';
         }
         return '';
@@ -125,7 +135,7 @@ const CartCheckout: React.FC = () => {
 
   const handleBlur = (name: string) => {
     setTouchedFields(new Set(touchedFields).add(name));
-    const error = validateField(name, formData[name]);
+    const error = validateField(name, formData[name as keyof FormData]);
     setValidationErrors({ ...validationErrors, [name]: error });
   };
 
@@ -167,15 +177,13 @@ const CartCheckout: React.FC = () => {
           city: formData.city,
           province: formData.state,
           postal_code: formData.zipCode,
-          country_code: formData.country === 'United States' ? 'us' :
-                       formData.country === 'Canada' ? 'ca' :
-                       formData.country === 'United Kingdom' ? 'gb' : 'us',
+          country_code: formData.country,
           phone: formData.phone,
         },
       });
 
       // Initialize payment session (creates payment collection automatically)
-      await sdk.store.payment.initiatePaymentSession(cart.id, {
+      await sdk.store.payment.initiatePaymentSession(cart, {
         provider_id: 'pp_system_default',
       });
 
@@ -426,8 +434,7 @@ const CartCheckout: React.FC = () => {
                     onBlur={() => handleBlur('email')}
                     className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 text-[#111827]"
                     style={{
-                      borderColor: validationErrors.email && touchedFields.has('email') ? '#ef4444' : '#e5e7eb',
-                      ringColor: '#111827'
+                      borderColor: validationErrors.email && touchedFields.has('email') ? '#ef4444' : '#e5e7eb'
                     }}
                     required
                   />
@@ -594,10 +601,12 @@ const CartCheckout: React.FC = () => {
                     className="w-full px-4 py-3 border border-[#e5e7eb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#111827] text-[#111827] appearance-none cursor-pointer bg-white"
                     required
                   >
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="North Korea">North Korea</option>
+                    <option value="">Select Country</option>
+                    {cart?.region?.countries?.map((country) => (
+                      <option key={country.iso_2} value={country.iso_2}>
+                        {country.display_name || country.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
-import { CartSummary } from './CartSummary';
-import { CheckoutHeader } from './CheckoutHeader';
-import { CheckoutNavigation } from './CheckoutNavigation';
+import { CartSummary } from '../components/CartSummary';
+import { CheckoutHeader } from '../components/CheckoutHeader';
+import { CheckoutNavigation } from '../components/CheckoutNavigation';
 import { CustomerInfo } from '../App';
 import { sdk } from '../lib/medusa-sdk';
 
@@ -28,7 +28,7 @@ export function Payment({ customerInfo, onBack }: PaymentProps) {
     setIsProcessing(true);
     try {
       // Initialize payment session (creates payment collection automatically)
-      await sdk.store.payment.initiatePaymentSession(cart.id, {
+      await sdk.store.payment.initiatePaymentSession(cart, {
         provider_id: 'pp_system_default',
       });
 

@@ -1,6 +1,6 @@
 import { useCart } from '../contexts/CartContext';
-import { CheckoutHeader } from './CheckoutHeader';
-import { CheckoutNavigation } from './CheckoutNavigation';
+import { CheckoutHeader } from '../components/CheckoutHeader';
+import { CheckoutNavigation } from '../components/CheckoutNavigation';
 
 /**
  * Cart Page

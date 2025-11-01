@@ -31,11 +31,22 @@ const CartCheckout: React.FC = () => {
     email: 'contact@my-email.com',
     mobile: '(555) 000-0000',
     address: 'Central Park, New York City, USA',
+    country: '',
     cardName: '',
     expiryDate: '',
     securityCode: '',
     postalCode: ''
   });
+
+  // Set default country from cart's region
+  useEffect(() => {
+    if (cart?.region?.countries && cart.region.countries.length > 0 && !checkoutData.country) {
+      setCheckoutData(prev => ({
+        ...prev,
+        country: cart.region!.countries![0].iso_2 || ''
+      }));
+    }
+  }, [cart?.region, checkoutData.country]);
 
   const addToCart = async (variantId: string) => {
     try {
@@ -97,7 +108,7 @@ const CartCheckout: React.FC = () => {
           last_name: 'Name',
           address_1: checkoutData.address,
           city: 'City',
-          country_code: 'us',
+          country_code: checkoutData.country,
           postal_code: checkoutData.postalCode || '00000',
           phone: checkoutData.mobile,
         },
@@ -341,6 +352,24 @@ const CartCheckout: React.FC = () => {
                       rows={3}
                       className="w-full px-4 py-3 border border-[#e5e7eb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6d737d] resize-none text-[#111827]"
                     />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#111827] mb-2">
+                      Country *
+                    </label>
+                    <select
+                      value={checkoutData.country}
+                      onChange={(e) => handleInputChange('country', e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-[#e5e7eb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6d737d] text-[#111827]"
+                    >
+                      <option value="">Select Country</option>
+                      {cart?.region?.countries?.map((country) => (
+                        <option key={country.iso_2} value={country.iso_2}>
+                          {country.display_name || country.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   {currentStep === 3 && (
                     <button

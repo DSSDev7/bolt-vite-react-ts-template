@@ -22,6 +22,7 @@ export interface CheckoutData {
   email: string;
   mobile: string;
   address: string;
+  country: string;
   cardName: string;
   expiryDate: string;
   securityCode: string;
