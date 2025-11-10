@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import babelPluginJsxSourceMetadata from './plugins/babel-plugin-jsx-source-metadata.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,7 +9,7 @@ export default defineConfig({
       babel: {
         plugins: [
           // Inject source location metadata for double-click-to-edit feature
-          ['./plugins/babel-plugin-jsx-source-metadata.js']
+          babelPluginJsxSourceMetadata
         ]
       }
     })

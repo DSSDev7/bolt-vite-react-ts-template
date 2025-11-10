@@ -3,7 +3,7 @@
  * This enables the double-click-to-edit feature in the preview
  */
 
-module.exports = function ({ types: t }) {
+export default function ({ types: t }) {
   return {
     name: 'jsx-source-metadata',
     visitor: {
