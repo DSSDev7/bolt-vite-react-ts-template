@@ -18,8 +18,9 @@ export default function ({ types: t }) {
         const filename = state.file.opts.filename;
         if (!filename) return;
 
-        // Get relative path from project root
-        const relativePath = filename.replace(process.cwd() + '/', '');
+        // Use the absolute path as-is (WebContainer will resolve it correctly)
+        // This ensures compatibility across different working directories
+        const sourceFilePath = filename;
 
         // Don't add attributes if they already exist (avoid duplicates)
         const hasSourceFile = node.attributes.some(
@@ -27,11 +28,11 @@ export default function ({ types: t }) {
         );
         if (hasSourceFile) return;
 
-        // Add source file attribute
+        // Add source file attribute with absolute path
         node.attributes.push(
           t.jSXAttribute(
             t.jSXIdentifier('data-source-file'),
-            t.stringLiteral(relativePath)
+            t.stringLiteral(sourceFilePath)
           )
         );
 
