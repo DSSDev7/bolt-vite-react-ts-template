@@ -1,6 +1,6 @@
 # Cart Checkout Variants Index
 
-Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
+Quick reference guide for all 3 MedusaJS-integrated cart checkout variants.
 
 ---
 
@@ -27,27 +27,6 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 ✅ Projects needing component customization
 ✅ Teams wanting to modify individual steps
 ✅ Applications with complex checkout logic
-
----
-
-## Variant 2: Single-File Layout
-
-**Path:** `variant-2/project/`
-
-### Characteristics
-- **Architecture:** All-in-one component
-- **Complexity:** Low
-- **Files:** `CartCheckout.tsx` (single file)
-- **Best For:** Quick integration, simple projects
-
-### Components
-- `CartCheckout.tsx` - Complete checkout in one file
-
-### Use Cases
-✅ MVP/Prototype projects
-✅ Quick ecommerce implementation
-✅ Small businesses
-✅ Learning/demo projects
 
 ---
 
@@ -94,40 +73,16 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 
 ---
 
-## Variant 6: Three-Step Progress Flow
-
-**Path:** `variant-6/project/`
-
-### Characteristics
-- **Architecture:** Single-file with step indicators
-- **Complexity:** Medium
-- **Files:** `CartCheckout.tsx` (three-step)
-- **Best For:** Guided checkout experience with progress indication
-
-### Components
-- `CartCheckout.tsx` - Three-step flow (Cart → Info → Payment)
-- Built-in step progress indicator
-- Step validation before proceeding
-
-### Use Cases
-✅ First-time buyer onboarding
-✅ Complex product configurations
-✅ Educational/tutorial flows
-✅ High-value transactions
-
----
-
 ## Comparison Table
 
-| Feature | V1 | V2 | V3 | V4 | V5 | V6 |
-|---------|----|----|----|----|----|----|
-| **Files** | Multiple | Single | Multiple | Single | Multiple | Single |
-| **Complexity** | Medium | Low | Medium | Low | Medium | Medium |
-| **Customizable** | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐ |
-| **Setup Speed** | Slow | **Fast** | Slow | **Fast** | Slow | Medium |
-| **Learning Curve** | Medium | **Easy** | Medium | **Easy** | Medium | Medium |
-| **Progress Steps** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Component Reuse** | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| Feature | V1 | V3 | V4 |
+|---------|----|----|----|
+| **Files** | Multiple | Multiple | Single |
+| **Complexity** | Medium | Medium | Low |
+| **Customizable** | ⭐⭐⭐ | ⭐⭐⭐ | ⭐ |
+| **Setup Speed** | Slow | Slow | **Fast** |
+| **Learning Curve** | Medium | Medium | **Easy** |
+| **Component Reuse** | ✅ | ✅ | ❌ |
 
 ---
 
@@ -138,12 +93,7 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 - Need component reusability
 - Want maximum flexibility
 - Have experienced React developers
-
-### Choose Variant 2 if:
-- Building MVP or prototype
-- Want fastest integration
-- Have simple requirements
-- New to React
+- **Default recommendation for most projects**
 
 ### Choose Variant 3 if:
 - Need unique design
@@ -156,18 +106,6 @@ Quick reference guide for all 6 MedusaJS-integrated cart checkout variants.
 - Want minimal UI
 - Focus on conversion
 - Need fast checkout
-
-### Choose Variant 5 if:
-- Have custom state management
-- Need specific hook architecture
-- Integrating with existing system
-- Advanced React knowledge
-
-### Choose Variant 6 if:
-- Want guided experience
-- Need progress indication
-- Have multi-step process
-- Onboarding new users
 
 ---
 
